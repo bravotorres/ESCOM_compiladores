@@ -1,3 +1,5 @@
+*.pdf
+
 # Prerequisites
 *.d
 
@@ -50,3 +52,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# IDE's and Workspaces
+./idea
+*.sublime-project
+*.sublime-workspace
+/.project

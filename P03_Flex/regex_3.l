@@ -1,10 +1,11 @@
 digit [0-9]
 minus [a-z]
 mayus [A-Z]
+caracter    ("_"{digit}*{minus}*{mayus}*)*
 
 %%
 
-{{digit}|{minus}|{mayus}|"_"}*{
+{caracter}{
 	int i = 0;
 	
 	while(yytext[i]){

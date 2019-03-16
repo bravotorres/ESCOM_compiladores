@@ -9,7 +9,7 @@ operador    "+"|"-"|"*"|"/"
 %%
 
 "-"?{argumento}{operador}"-"?{argumento}	{printf("Operacion Valida.");}
-<<EOF>>		{yyterminate();}
+<<EOF>>		{printf("Fin..."); yyterminate();}
 
 %%
 
