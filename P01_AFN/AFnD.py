@@ -74,6 +74,27 @@ import sys
 
 
 class AFnD:
+    '''
+        Un Automata Finito no determinista con transiciones epsilon (AFnD-e), esta formado por una 5-tupla de la forma:
+            AFnD-e(Q, S, q, d, F)
+
+        Donde:
+            Q: Conjunto de Estados
+            S: Alfabeto aceptado
+            q: Estado inicial
+            d: Funcion de Transicion
+            F: Conjunto de Estados finales o de aceptacion
+
+        El automata se lee desde un archivo de texto plano con el siquiente formato:
+
+            Linea | Formato | Descripcion
+            1   | 0,1,2,3 | - Q - Tupla con los indices de los estados del Automata
+            2   | a,b,c   | - S - Tupla con los los simbolos del alfabeto
+            3   | 0       | - q - Estado inicial, Elemento de Q.
+            4   | 1,3     | - F - Tupla con los indices de los estados finales o de aceptacion, subconjunto de Q
+            5   | 0,a,1   | - d - A partir de aqui es la 'tabla' de transicion de la forma <estado>,<simbolo>,<estado>
+            ... | ...     | ...
+    '''
     def __init__(self, Q, S, q, F, D):
         self.estados = list(Q)
         self.alfabeto = list(S)
@@ -83,6 +104,7 @@ class AFnD:
         self.completar_delta()
 
     def completar_delta(self):
+        '''Completa la tabla de tranisción con e estado de error'''
         self.estados.append('ERR')
         transiciones = [[i, j] for i in self.estados for j in self.alfabeto]
 
@@ -98,25 +120,44 @@ class AFnD:
         self.delta.sort()
         print("Autómata completo...")
 
-    def cadena_valida(self, entrada):
-        for i in entrada:
-            if i not in self.alfabeto:
-                return False
-
+    def aceptar_cadena(self, entrada):
+        self.recorrer(entrada, self.estado_inicial)
         return True
 
-    def recorrer(self, entrada):
+    def recorrer(self, entrada, q_init):
+        '''Simula el el recorrido del AFN para verificar si la cadena es aceptada o no'''
+        
         for i in entrada:
-            print(i)
+            for j in self.delta:
+                if q_init == 'ERR':
+                    print("Error en: {} con '{}'".format(j[0], i))
+                    return 
+
+                if q_init == j[0] and i == j[1]:
+                    
+                    print(' -> '.join(j))
+                    # print('Vamos hacia: {}'.format(j[2]))
+                    self.recorrer(entrada[1:], j[2])
+                else:
+                    # if i not in self.alfabeto:
+                    #     print("Error en: {} con '{}', Símbolo fuera del alfabeto.".format(j[0], i))
+                    continue
+            
+
+    def imprimir_caminos(self):
+        print('Caminos...')
+        pass
 
     def __str__(self):
+        '''Visualiza las características del AFN:
+            Conjunto de estados, Alfabeto, Estado Inicial, Estados de Aceptación y la tabla de transiciones completa.'''
         s = ''
 
         s += "\nEstados: \n"
         s += "\t{q_" + ", q_".join(self.estados) + "}"
 
         s += "\n\nAlfabeto: \n"
-        s += "\t{'" + "', '".join(self.estados) + "'}"
+        s += "\t{'" + "', '".join(self.alfabeto) + "'}"
 
         s += "\n\nEstado Inicial: \n"
         s += "\tq_{}".format(self.estado_inicial)
@@ -124,7 +165,8 @@ class AFnD:
         s += "\n\nEstados de Aceptación: \n"
         s += "\t{q_" + ", q_".join(self.estados_aceptacion) + "}"
 
-        s += "\n\nTabla de Transiciones: \n"
+        s += "\n\nTabla de Transiciones: {}\n".format(len(self.delta))
+        
         for i in self.delta:
             s += "\t{}\n".format(i)
 
@@ -139,6 +181,7 @@ def file_to_afn(file):
         alfabeto = (f.readline()).replace('\n', '').split(',')
         inicial = (f.readline()).replace('\n', '').split(',')[0]
         aceptacion = (f.readline()).replace('\n', '').split(',')
+
         transiciones = []
 
         for i in f:
@@ -161,11 +204,23 @@ def file_to_afn(file):
 def main():
     afn = file_to_afn(FILE)
     print(afn)
-    print(len(afn.delta))
 
-    entrada = input("Ingrese Cadena: ")
+    while True:
+        entrada = input("Ingrese Cadena: ")
 
-    afn.recorrer(entrada)
+        if entrada == 'quit' or entrada == 'exit':
+            break
+        
+        if len(entrada) == 0:
+            continue
+        
+        if afn.aceptar_cadena(entrada):
+            afn.imprimir_caminos()
+        else:
+            print("\n\tCADENA NO ACEPTADA POR EL AFN\n")
+    
+    print('\nHasta luego!\n')
+    exit(0)
 
 
 if __name__ == '__main__':
@@ -176,6 +231,10 @@ if __name__ == '__main__':
         FILE = sys.argv[1]
 
         main()
+        exit(0)
+
+    except KeyboardInterrupt:
+        print('\n\nSalida forzada por el usuario.\nHasta luego!\n')
         exit(0)
 
     except Exception as ex:
