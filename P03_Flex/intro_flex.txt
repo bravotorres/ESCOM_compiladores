@@ -1,0 +1,24 @@
+digito	[0-9]
+minus	[a-z]
+mayus	[A-Z]
+. Cualquier caracter
+
+.* El alfabeto universal
+
+^[...] Inicio de una expresion
+	^[A-Z] // Verifica una cadena que inicie con una letra mayúscula
+
+[^...] Negación, excepción
+	[^AZ\n] // Cualquier Caracter exceptio A, Z o salto de linea
+
+[a-z]$ // Finalación de cadena
+
+r? // Cero o una 'r', equivale a r{,1}
+
+r{3,10} // De tres a 10 repeticiones de 'r'
+
+"." // Caracter punto, equivalente a \.
+
+\n, \t, \r // Salto de llinea, tabulador, retorno de carro
+\', \", // Escape de Caracteres comilla simple o comilla doble
+

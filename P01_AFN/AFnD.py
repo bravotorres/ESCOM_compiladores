@@ -225,11 +225,14 @@ def main():
 
 if __name__ == '__main__':
     try:
+		sys.getdefaultencoding()
+		print("Default: {}".format(sys.getdefautencoding() ))
+		print("System: {}".format(sys.getfilesystemencoding() ))
+        
         if len(sys.argv) != 2:
             raise Exception("Usage: \n\tpython3 AFnD.py <automata-file.txt>\n")
 
         FILE = sys.argv[1]
-
         main()
         exit(0)
 
