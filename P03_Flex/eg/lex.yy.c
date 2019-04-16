@@ -361,7 +361,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[12] =
     {   0,
-        1,    1,    4,    3,    2,    1,    1,    2,    1,    1,
+        0,    0,    4,    3,    3,    1,    3,    0,    1,    2,
         0
     } ;
 
@@ -371,16 +371,16 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2,    1,    1,    1,
-        1,    1,    1,    1,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        1,    1,    1,    1,    1,    1,    4,    4,    4,    4,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    2,    3,    1,    1,
 
-        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
-        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
-        4,    4,    1,    1,    1,    1,    1,    1,    1,    1,
+        4,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    5,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -397,33 +397,33 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[5] =
+static const YY_CHAR yy_meta[6] =
     {   0,
-        1,    2,    3,    1
+        1,    1,    1,    2,    1
     } ;
 
-static const flex_int16_t yy_base[14] =
+static const flex_int16_t yy_base[13] =
     {   0,
-        0,    0,    8,    9,    0,    0,    3,    0,    0,    0,
-        9,    4,    2
+        0,    0,    9,   10,    4,   10,    0,    0,   10,   10,
+       10,    6
     } ;
 
-static const flex_int16_t yy_def[14] =
+static const flex_int16_t yy_def[13] =
     {   0,
-       11,    1,   11,   11,   12,   13,   13,   12,   13,    7,
-        0,   11,   11
+       11,    1,   11,   11,   11,   11,   12,    5,   11,   11,
+        0,   11
     } ;
 
-static const flex_int16_t yy_nxt[14] =
+static const flex_int16_t yy_nxt[16] =
     {   0,
-        4,    5,    6,    7,    9,    8,   10,   11,    3,   11,
-       11,   11,   11
+        4,    5,    6,    4,    7,    8,    9,   10,   11,    3,
+       11,   11,   11,   11,   11
     } ;
 
-static const flex_int16_t yy_chk[14] =
+static const flex_int16_t yy_chk[16] =
     {   0,
-        1,    1,    1,    1,   13,   12,    7,    3,   11,   11,
-       11,   11,   11
+        1,    1,    1,    1,    1,    5,    5,   12,    3,   11,
+       11,   11,   11,   11,   11
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -440,7 +440,7 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "practicas.l"
+#line 1 "04_test.l"
 #line 445 "lex.yy.c"
 
 #define INITIAL 0
@@ -658,7 +658,7 @@ YY_DECL
 		}
 
 	{
-#line 6 "practicas.l"
+#line 1 "04_test.l"
 
 #line 664 "lex.yy.c"
 
@@ -693,7 +693,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 9 );
+		while ( yy_base[yy_current_state] != 10 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -719,24 +719,20 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 7 "practicas.l"
-{
-	printf("Letras ");
-}
+#line 2 "04_test.l"
+{printf("x");}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "practicas.l"
-{
-	printf("Números ");
-}
+#line 3 "04_test.l"
+;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "practicas.l"
+#line 5 "04_test.l"
 ECHO;
 	YY_BREAK
-#line 740 "lex.yy.c"
+#line 736 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1741,4 +1737,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 16 "practicas.l"
+#line 5 "04_test.l"
