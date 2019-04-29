@@ -18,10 +18,8 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=bison
-base_path=/home/alexx/mein_repos/ESCOM_compiladores/P04_Bison/calc/
-description=
-file_patterns=
+name=practica
+base_path=/home/alexx/mein_repos/ESCOM_compiladores/P04_Bison/practica
 
 [long line marker]
 long_line_behaviour=1
@@ -31,4 +29,4 @@ long_line_column=120
 current_page=-1
 
 [VTE]
-last_dir=/home/alexx/mein_repos/ESCOM_compiladores/P04_Bison/calc
+last_dir=/home/alexx/mein_repos/ESCOM_compiladores/P04_Bison/practica

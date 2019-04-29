@@ -23,7 +23,7 @@ expcad  : expcad '+' expcad {
             strcpy($$,$1);
         }
  		| CAD {strcpy($$,S1);}
- ;
+        ;
 %%
 main(){
 	yyparse();
