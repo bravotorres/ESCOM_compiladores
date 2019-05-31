@@ -4,16 +4,17 @@ real_pre    "."{entero}
 real_pos    {entero}"."
 real_com    {entero}"."{entero}
 argumento   {entero}|{real_pos}|{real_pre}|{real_com}
-operador    "+"|"-"|"*"|"/"
+operador    "+" | "-" | "*" | "/"
 
 %%
-
-"-"?{argumento}{operador}"-"?{argumento}	{printf("Operacion Valida.");}
-<<EOF>>		{printf("Fin..."); yyterminate();}
+{digito}		{ printf("DIGITO");	}
+{entero}		{ printf("ENTERO");	}
+{real_com}		{ printf("REAL");	}
 
 %%
-
+/*
 int main(){
     yylex();
     return 0;
 }
+*/
