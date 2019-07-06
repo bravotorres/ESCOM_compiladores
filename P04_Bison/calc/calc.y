@@ -4,7 +4,9 @@
 }
 
 %token <numero> NUM
+%type <numero> NUM
 %token <cadena> CAD
+%type <cadena> CAD
 %type <numero> expnum
 %type <cadena> expcad
 %left '+'
@@ -22,9 +24,10 @@ expcad  : expcad '+' expcad {
             strcat($1,$3);
             strcpy($$,$1);
         }
- 		| CAD {strcpy($$,S1);}
+	| CAD {strcpy($$,S1);}
         ;
 %%
+#include "lex.yy.c"
 main(){
-	yyparse();
+    yyparse();
 }
