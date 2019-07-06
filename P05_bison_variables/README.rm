@@ -1,0 +1,29 @@
+
+variables.
+
+Casos ideales y operaciones.
+
+concatenación y potencia de cadenas.
+
+Reglas, se declaran
+	palabras reservadas
+	identificadores
+
+
+e.g:
+Tabla de Simbolos.
+
+	string var1 = "Hola";
+	string var1 = "mundo";
+
+
+id 		tipo		lexema	valor;
+01		string		var1	hola
+01		string		var2	mundo
+
+
+var1 ->
+	'Hola'
+
+
+Anidamiento de manejo de variables.
