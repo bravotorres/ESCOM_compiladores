@@ -327,6 +327,8 @@ void yyfree (void *  );
 
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
+/* Begin user sect3 */
+
 typedef unsigned char YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -358,8 +360,8 @@ static void yynoreturn yy_fatal_error (yyconst char* msg  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 2
-#define YY_END_OF_BUFFER 3
+#define YY_NUM_RULES 4
+#define YY_END_OF_BUFFER 5
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -369,15 +371,15 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[9] =
     {   0,
-        0,    0,    3,    2,    2,    1,    0,    0
+        0,    0,    5,    3,    2,    1,    1,    0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
     {   0,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    2,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    3,    3,    3,    3,    3,    3,
@@ -406,27 +408,27 @@ static yyconst YY_CHAR yy_ec[256] =
 
 static yyconst YY_CHAR yy_meta[4] =
     {   0,
-        1,    1,    1
+        1,    1,    2
     } ;
 
 static yyconst flex_uint16_t yy_base[10] =
     {   0,
-        4,    3,    4,    7,    0,    7,    0,    7,    0
+        0,    0,    5,    6,    6,    0,    0,    6,    2
     } ;
 
 static yyconst flex_int16_t yy_def[10] =
     {   0,
-        9,    9,    8,    8,    8,    8,    5,    0,    8
+        8,    1,    8,    8,    8,    9,    9,    0,    8
     } ;
 
-static yyconst flex_uint16_t yy_nxt[11] =
+static yyconst flex_uint16_t yy_nxt[10] =
     {   0,
-        4,    6,    7,    8,    5,    5,    3,    8,    8,    8
+        4,    5,    6,    7,    8,    3,    8,    8,    8
     } ;
 
-static yyconst flex_int16_t yy_chk[11] =
+static yyconst flex_int16_t yy_chk[10] =
     {   0,
-        9,    5,    5,    3,    2,    1,    8,    8,    8,    8
+        1,    1,    1,    9,    3,    8,    8,    8,    8
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -443,8 +445,13 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "cadena.l"
-#line 448 "lex.yy.c"
+#line 1 "ejemplo01.l"
+/* Parecido a wc de Unix */
+#line 3 "ejemplo01.l"
+int chars = 0;
+int words = 0;
+int lines = 0;
+#line 455 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -662,10 +669,10 @@ YY_DECL
 		}
 
 	{
-#line 3 "cadena.l"
+#line 8 "ejemplo01.l"
 
 
-#line 669 "lex.yy.c"
+#line 676 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -698,7 +705,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 7 );
+		while ( yy_base[yy_current_state] != 6 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -724,15 +731,26 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 5 "cadena.l"
-{ printf("Es una cadena: '%s'", yytext); }
+#line 10 "ejemplo01.l"
+{ words++; chars += strlen(yytext); }
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
-#line 7 "cadena.l"
+#line 11 "ejemplo01.l"
+{ chars++; lines++; }
+	YY_BREAK
+case 3:
+YY_RULE_SETUP
+#line 12 "ejemplo01.l"
+{ chars++; }
+	YY_BREAK
+case 4:
+YY_RULE_SETUP
+#line 14 "ejemplo01.l"
 ECHO;
 	YY_BREAK
-#line 736 "lex.yy.c"
+#line 754 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1733,4 +1751,17 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 7 "cadena.l"
+#line 14 "ejemplo01.l"
+
+
+
+int main(int argc, char **argv){
+	yylex();
+	printf("\n    Lineas: %8d", lines);
+	printf("\n  Palabras: %8d", words);
+	printf("\nCaracteres: %8d", chars);
+	printf("\n");
+	
+	return 0;
+}
+
